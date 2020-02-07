@@ -1,6 +1,7 @@
 <template>
   <div class="containerClass">
     <carousel-3d
+      v-if="loading"
       :count="count"
       :perspective="perspective"
       :display="display"
@@ -210,6 +211,7 @@ export default {
         )
         .then(response => {
           this.imageList = response.data.data
+          this.loading = true
         })
         .catch(e => {
           alert(e)
