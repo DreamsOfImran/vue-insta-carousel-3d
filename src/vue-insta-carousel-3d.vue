@@ -6,32 +6,40 @@
       :perspective="perspective"
       :display="display"
       :loop="loop"
-      :animationSpeed="animationSpeed"
+      :animation-speed="animationSpeed"
       :dir="direction"
       :width="width"
       :height="height"
       :border="border"
       :space="space"
-      :startIndex="startIndex"
+      :start-index="startIndex"
       :clickable="clickable"
       :disable3d="disable3d"
-      :minSwipeDistance="minSwipeDistance"
-      :inverseScaling="inverseScaling"
-      :controlsVisible="controlsVisible"
-      :controlsPrevHtml="controlsPrevHtml"
-      :controlsNextHtml="controlsNextHtml"
-      :controlsWidth="controlsWidth"
-      :controlsHeight="controlsHeight"
-      :onLastSlide="onLastSlide"
-      :onSlideChange="onSlideChange"
+      :min-swipe-distance="minSwipeDistance"
+      :inverse-scaling="inverseScaling"
+      :controls-visible="controlsVisible"
+      :controls-prev-html="controlsPrevHtml"
+      :controls-next-html="controlsNextHtml"
+      :controls-width="controlsWidth"
+      :controls-height="controlsHeight"
       :bias="bias"
-      :onMainSlideClick="onMainSlideClick"
+      :on-main-slide-click="onMainSlideClick"
       :autoplay="autoplay"
-      :autoplayTimeout="autoplayTimeout"
-      :autoplayHoverPause="autoplayHoverPause"
+      :autoplay-timeout="autoplayTimeout"
+      :autoplay-hover-pause="autoplayHoverPause"
+      @last-slide="onLastSlide"
+      @after-slide-change="onSlideChange"
+      @before-slide-change="beforeSlideChange"
     >
-      <slide v-for="(image, i) in imageList" :key="i" :index="i">
-        <img :src="image.images.standard_resolution.url" class="slide-images" />
+      <slide
+        v-for="(image, i) in imageList"
+        :key="i"
+        :index="i"
+      >
+        <img
+          :src="image.images.standard_resolution.url"
+          class="slide-images"
+        >
         <figcaption class="caption-container">
           <div class="caption-row">
             <div class="col">
@@ -41,7 +49,6 @@
               {{ image.comments.count }}
             </div>
           </div>
-          <slot></slot>
         </figcaption>
       </slide>
     </carousel-3d>
@@ -166,6 +173,10 @@ export default {
       default: noop
     },
     onSlideChange: {
+      type: Function,
+      default: noop
+    },
+    beforeSlideChange: {
       type: Function,
       default: noop
     },
