@@ -42,10 +42,10 @@
         >
         <figcaption class="caption-container">
           <div class="caption-row">
-            <div class="col">
+            <div class="likes-col">
               {{ image.likes.count }}
             </div>
-            <div class="col">
+            <div class="comments-col">
               {{ image.comments.count }}
             </div>
           </div>
